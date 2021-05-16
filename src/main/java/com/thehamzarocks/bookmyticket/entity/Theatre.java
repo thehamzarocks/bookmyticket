@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket;
+package com.thehamzarocks.bookmyticket.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -6,11 +6,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "Theatre")
 public class Theatre {
-  private @Id @GeneratedValue Long theatreId;
+  private @Id @GeneratedValue Long id;
   private String name;
 
   @ManyToOne
-  @JoinColumn(name = "cityId")
+//  @JoinColumn(name = "id")
   private City city;
 
   public Theatre() {}
@@ -20,16 +20,16 @@ public class Theatre {
     this.city = city;
   }
 
-  public Long getTheatreId() {
-    return this.theatreId;
+  public Long getId() {
+    return this.id;
   }
 
   public String getName() {
     return this.name;
   }
 
-  public void setTheatreId(Long theatreId) {
-    this.theatreId = theatreId;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public void setName(String name) {
@@ -49,17 +49,17 @@ public class Theatre {
     if (this == o) return true;
     if (!(o instanceof Theatre)) return false;
     Theatre theatre = (Theatre) o;
-    return theatreId.equals(theatre.theatreId) && name.equals(theatre.name);
+    return id.equals(theatre.id) && name.equals(theatre.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(theatreId, name);
+    return Objects.hash(id, name);
   }
 
   @Override
   public String toString() {
-    return "Theatre{" + "theatreId=" + theatreId + ", name='" + name + '\'' + '}';
+    return "Theatre{" + "theatreId=" + id + ", name='" + name + '\'' + '}';
   }
 }
 

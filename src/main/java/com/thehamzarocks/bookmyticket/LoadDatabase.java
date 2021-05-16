@@ -1,5 +1,9 @@
 package com.thehamzarocks.bookmyticket;
 
+import com.thehamzarocks.bookmyticket.entity.City;
+import com.thehamzarocks.bookmyticket.entity.Movie;
+import com.thehamzarocks.bookmyticket.entity.Show;
+import com.thehamzarocks.bookmyticket.entity.Theatre;
 import com.thehamzarocks.bookmyticket.repository.CityRepository;
 import com.thehamzarocks.bookmyticket.repository.MovieRepository;
 import com.thehamzarocks.bookmyticket.repository.ShowRepository;

@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket;
+package com.thehamzarocks.bookmyticket.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "City")
 public class City {
-  private @Id @GeneratedValue Long cityId;
+  private @Id @GeneratedValue Long id;
   private String name;
 
   public City() {}
@@ -19,7 +19,7 @@ public class City {
   }
 
   public Long getId() {
-    return this.cityId;
+    return this.id;
   }
 
   public String getName() {
@@ -27,7 +27,7 @@ public class City {
   }
 
   public void setId(Long id) {
-    this.cityId = id;
+    this.id = id;
   }
 
   public void setName(String name) {
@@ -39,16 +39,16 @@ public class City {
     if (this == o) return true;
     if (!(o instanceof City)) return false;
     City city = (City) o;
-    return cityId.equals(city.cityId) && name.equals(city.name);
+    return id.equals(city.id) && name.equals(city.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cityId, name);
+    return Objects.hash(id, name);
   }
 
   @Override
   public String toString() {
-    return "City{" + "id=" + cityId + ", name='" + name + '\'' + '}';
+    return "City{" + "id=" + id + ", name='" + name + '\'' + '}';
   }
 }

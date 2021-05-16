@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket;
+package com.thehamzarocks.bookmyticket.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -6,16 +6,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "Show")
 public class Show {
-  @Id @GeneratedValue Long showId;
+  @Id @GeneratedValue Long id;
 
   String showTime;
 
   @ManyToOne
-  @JoinColumn(name = "theatre_id")
+//  @JoinColumn(name = "id")
   private Theatre theatre;
 
   @ManyToOne
-  @JoinColumn(name = "movie_id")
+//  @JoinColumn(name = "id")
   private Movie movie;
 
   public Show() {}
@@ -26,12 +26,12 @@ public class Show {
     this.movie = movie;
   }
 
-  public Long getShowId() {
-    return showId;
+  public Long getId() {
+    return id;
   }
 
-  public void setShowId(Long showId) {
-    this.showId = showId;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getShowTime() {
@@ -47,11 +47,11 @@ public class Show {
     if (this == o) return true;
     if (!(o instanceof Show)) return false;
     Show show = (Show) o;
-    return showId.equals(show.showId) && theatre.equals(show.theatre) && movie.equals(show.movie);
+    return id.equals(show.id) && theatre.equals(show.theatre) && movie.equals(show.movie);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(showId, theatre, movie);
+    return Objects.hash(id, theatre, movie);
   }
 }
