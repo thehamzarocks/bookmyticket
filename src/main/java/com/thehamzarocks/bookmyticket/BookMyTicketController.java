@@ -53,14 +53,14 @@ public class BookMyTicketController {
   }
 
   @GetMapping("/show/{id}")
-  public List<TheatreShow> getShowDetails(@PathVariable("id") Long id) {
-      return theatreService.getShowFromTheatre();
+  public TheatreShow getShowDetails(@PathVariable("id") Long id) {
+      return theatreService.getShowFromTheatre(id);
 //    return showRepository.findById(id).orElseThrow();
   }
 
   @PostMapping("/show/{id}")
-  public String bookShow(@PathVariable("id") final String id, @RequestBody String body) {
-    return "Booked show for " + body;
+  public String bookShow(@PathVariable("id") final Long id, @RequestBody BookShowRequest bookShowRequest) {
+    return theatreService.bookShow(id, bookShowRequest);
   }
 
   @PostMapping("/shows")
