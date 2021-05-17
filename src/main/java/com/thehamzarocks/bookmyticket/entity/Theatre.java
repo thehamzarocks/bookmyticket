@@ -10,7 +10,6 @@ public class Theatre {
   private String name;
 
   @ManyToOne
-//  @JoinColumn(name = "id")
   private City city;
 
   public Theatre() {}

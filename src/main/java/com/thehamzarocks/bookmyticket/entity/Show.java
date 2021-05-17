@@ -1,6 +1,8 @@
 package com.thehamzarocks.bookmyticket.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -8,22 +10,25 @@ import java.util.Objects;
 public class Show {
   @Id @GeneratedValue Long id;
 
-  String showTime;
+  private Long theatreShowId;
 
-  @ManyToOne
-//  @JoinColumn(name = "id")
-  private Theatre theatre;
+  private String time;
 
-  @ManyToOne
-//  @JoinColumn(name = "id")
-  private Movie movie;
+  @OneToOne Theatre theatre;
+
+  @OneToOne Movie movie;
+
+  // TODO: do we need to persist this?
+  @OneToMany private List<Seat> seats;
 
   public Show() {}
 
-  public Show(String showTime, Theatre theatre, Movie movie) {
-    this.showTime = showTime;
+  public Show(Long theatreShowId, String time, Theatre theatre, Movie movie, List<Seat> seats) {
+    this.theatreShowId = theatreShowId;
+    this.time = time;
     this.theatre = theatre;
     this.movie = movie;
+    this.seats = seats != null ? seats : new ArrayList<>();
   }
 
   public Long getId() {
@@ -34,24 +39,43 @@ public class Show {
     this.id = id;
   }
 
-  public String getShowTime() {
-    return showTime;
+  public Long getTheatreShowId() {
+    return theatreShowId;
   }
 
-  public void setShowTime(String showTime) {
-    this.showTime = showTime;
+  public void setTheatreShowId(Long theatreShowId) {
+    this.theatreShowId = theatreShowId;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Show)) return false;
-    Show show = (Show) o;
-    return id.equals(show.id) && theatre.equals(show.theatre) && movie.equals(show.movie);
+  public String getTime() {
+    return time;
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, theatre, movie);
+  public void setTime(String time) {
+    this.time = time;
+  }
+
+  public Movie getMovie() {
+    return movie;
+  }
+
+  public void setMovie(Movie movie) {
+    this.movie = movie;
+  }
+
+  public Theatre getTheatre() {
+    return theatre;
+  }
+
+  public void setTheatre(Theatre theatre) {
+    this.theatre = theatre;
+  }
+
+  public List<Seat> getSeats() {
+    return seats;
+  }
+
+  public void setSeats(List<Seat> seats) {
+    this.seats = seats;
   }
 }

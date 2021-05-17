@@ -1,9 +1,6 @@
 package com.thehamzarocks.bookmyticket;
 
-import com.thehamzarocks.bookmyticket.entity.City;
-import com.thehamzarocks.bookmyticket.entity.Movie;
-import com.thehamzarocks.bookmyticket.entity.Show;
-import com.thehamzarocks.bookmyticket.entity.Theatre;
+import com.thehamzarocks.bookmyticket.entity.*;
 import com.thehamzarocks.bookmyticket.repository.CityRepository;
 import com.thehamzarocks.bookmyticket.repository.MovieRepository;
 import com.thehamzarocks.bookmyticket.repository.ShowRepository;
@@ -12,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
 
 @Configuration
 public class LoadDatabase {
@@ -38,7 +37,7 @@ public class LoadDatabase {
       Movie theBigShortMovie = new Movie("The Big Short");
       movieRepository.save(theBigShortMovie);
 
-      showRepository.save(new Show("noon", niceMoviesTheatre, theBigShortMovie));
+      showRepository.save(new Show(1L, "noon", niceMoviesTheatre, theBigShortMovie, new ArrayList<>()));
     };
   }
 }

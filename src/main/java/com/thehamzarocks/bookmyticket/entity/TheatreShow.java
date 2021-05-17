@@ -1,31 +1,22 @@
 package com.thehamzarocks.bookmyticket.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.util.List;
 
-@Entity
 public class TheatreShow {
 
-  @Id @GeneratedValue private Long id;
+  private Long id;
 
   private String time;
-  private String movieName;
-  private String theatre;
-
-  @OneToMany
+  private Long theatreId;
+  private Long movieId;
   private List<Seat> seats;
 
   public TheatreShow() {}
 
-  public TheatreShow(String time, String movieName, String theatre, List<Seat> seats) {
+  public TheatreShow(String time, Long theatreId, Long movieId, List<Seat> seats) {
     this.time = time;
-    this.movieName = movieName;
-    this.theatre = theatre;
+    this.theatreId = theatreId;
+    this.movieId = movieId;
     this.seats = seats;
   }
 
@@ -45,20 +36,20 @@ public class TheatreShow {
     this.time = time;
   }
 
-  public String getMovieName() {
-    return movieName;
+  public Long getMovieId() {
+    return movieId;
   }
 
-  public void setMovieName(String movieName) {
-    this.movieName = movieName;
+  public void setMovieId(Long movieId) {
+    this.movieId = movieId;
   }
 
-  public String getTheatre() {
-    return theatre;
+  public Long getTheatreId() {
+    return theatreId;
   }
 
-  public void setTheatre(String theatre) {
-    this.theatre = theatre;
+  public void setTheatreId(Long theatreId) {
+    this.theatreId = theatreId;
   }
 
   public List<Seat> getSeats() {
@@ -69,4 +60,3 @@ public class TheatreShow {
     this.seats = seats;
   }
 }
-
