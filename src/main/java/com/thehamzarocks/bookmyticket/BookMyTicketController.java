@@ -1,10 +1,7 @@
 package com.thehamzarocks.bookmyticket;
 
 import com.thehamzarocks.bookmyticket.entity.*;
-import com.thehamzarocks.bookmyticket.repository.CityRepository;
-import com.thehamzarocks.bookmyticket.repository.MovieRepository;
-import com.thehamzarocks.bookmyticket.repository.ShowRepository;
-import com.thehamzarocks.bookmyticket.repository.TheatreRepository;
+import com.thehamzarocks.bookmyticket.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +22,8 @@ public class BookMyTicketController {
   @Autowired ShowRepository showRepository;
 
   @Autowired TheatreService theatreService;
+
+  @Autowired UserRepository userRepository;
 
   @GetMapping("/cities")
   public List<City> getCities() {
@@ -49,22 +48,26 @@ public class BookMyTicketController {
       return showRepository.findAll();
     }
     return showRepository.findByTheatreIdAndMovieId(theatreId, movie);
-    //    return showRepository.findAll();
   }
 
   @GetMapping("/show/{id}")
   public TheatreShow getShowDetails(@PathVariable("id") Long id) {
-      return theatreService.getShowFromTheatre(id);
-//    return showRepository.findById(id).orElseThrow();
+    return theatreService.getShowFromTheatre(id);
   }
 
   @PostMapping("/show/{id}")
-  public String bookShow(@PathVariable("id") final Long id, @RequestBody BookShowRequest bookShowRequest) {
+  public String bookShow(
+      @PathVariable("id") final Long id, @RequestBody BookShowRequest bookShowRequest) {
     return theatreService.bookShow(id, bookShowRequest);
   }
 
   @PostMapping("/shows")
   public String addShowDetails(@RequestBody String showsToAdd) {
     return showsToAdd;
+  }
+
+  @GetMapping("/users")
+  public List<User> getUsers() {
+    return userRepository.findAll();
   }
 }

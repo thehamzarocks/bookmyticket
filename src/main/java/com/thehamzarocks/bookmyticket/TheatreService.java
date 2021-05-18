@@ -3,6 +3,7 @@ package com.thehamzarocks.bookmyticket;
 import com.thehamzarocks.bookmyticket.entity.BookShowRequest;
 import com.thehamzarocks.bookmyticket.entity.Show;
 import com.thehamzarocks.bookmyticket.entity.TheatreShow;
+import com.thehamzarocks.bookmyticket.entity.User;
 import com.thehamzarocks.bookmyticket.repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class TheatreService {
@@ -20,11 +22,11 @@ public class TheatreService {
     return restTemplateBuilder.build();
   }
 
-  @Autowired
-  RestTemplate restTemplate;
+  @Autowired RestTemplate restTemplate;
 
-  @Autowired
-  ShowRepository showRepository;
+  @Autowired ShowRepository showRepository;
+
+  @Autowired AuthService authService;
 
   public List<TheatreShow> getShowsFromTheatre() {
     return restTemplate.getForObject("http://localhost:8081/show/", List.class);
@@ -32,11 +34,15 @@ public class TheatreService {
 
   public TheatreShow getShowFromTheatre(Long id) {
     Show show = showRepository.findById(id).orElseThrow();
-    return restTemplate.getForObject("http://localhost:8081/show/" + show.getTheatreShowId(), TheatreShow.class);
+    return restTemplate.getForObject(
+        "http://localhost:8081/show/" + show.getTheatreShowId(), TheatreShow.class);
   }
 
   public String bookShow(Long id, BookShowRequest bookShowRequest) {
+    User user = authService.getAuthenticatedUser();
+    bookShowRequest.setUserName(user.getName());
     Show show = showRepository.findById(id).orElseThrow();
-    return restTemplate.postForObject("http://localhost:8081/show/" + show.getTheatreShowId(), bookShowRequest, String.class);
+    return restTemplate.postForObject(
+        "http://localhost:8081/show/" + show.getTheatreShowId(), bookShowRequest, String.class);
   }
 }
