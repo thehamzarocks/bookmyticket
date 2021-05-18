@@ -55,15 +55,15 @@ public class BookMyTicketController {
     return theatreService.getShowFromTheatre(id);
   }
 
-  @PostMapping("/show/{id}")
+  @PostMapping("/booking/{id}")
   public String bookShow(
       @PathVariable("id") final Long id, @RequestBody BookShowRequest bookShowRequest) {
     return theatreService.bookShow(id, bookShowRequest);
   }
 
   @PostMapping("/shows")
-  public String addShowDetails(@RequestBody String showsToAdd) {
-    return showsToAdd;
+  public String addShowDetails(@RequestBody List<TheatreShow> showsToAdd) {
+    return theatreService.addShowDetails(showsToAdd);
   }
 
   @GetMapping("/users")

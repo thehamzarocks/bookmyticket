@@ -19,7 +19,8 @@ public class Show {
   @OneToOne Movie movie;
 
   // TODO: do we need to persist this?
-  @OneToMany private List<Seat> seats;
+  @Transient
+  private List<Seat> seats;
 
   public Show() {}
 

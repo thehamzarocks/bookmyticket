@@ -1,10 +1,9 @@
 package com.thehamzarocks.bookmyticket;
 
-import com.thehamzarocks.bookmyticket.entity.BookShowRequest;
-import com.thehamzarocks.bookmyticket.entity.Show;
-import com.thehamzarocks.bookmyticket.entity.TheatreShow;
-import com.thehamzarocks.bookmyticket.entity.User;
+import com.thehamzarocks.bookmyticket.entity.*;
+import com.thehamzarocks.bookmyticket.repository.MovieRepository;
 import com.thehamzarocks.bookmyticket.repository.ShowRepository;
+import com.thehamzarocks.bookmyticket.repository.TheatreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -26,16 +25,24 @@ public class TheatreService {
 
   @Autowired ShowRepository showRepository;
 
+  @Autowired
+  TheatreRepository theatreRepository;
+
+  @Autowired
+  MovieRepository movieRepository;
+
   @Autowired AuthService authService;
 
+  private static final String theatreUrl = "http://localhost:8081";
+
   public List<TheatreShow> getShowsFromTheatre() {
-    return restTemplate.getForObject("http://localhost:8081/show/", List.class);
+    return restTemplate.getForObject(String.format("%s/%s", theatreUrl, "show/"), List.class);
   }
 
   public TheatreShow getShowFromTheatre(Long id) {
     Show show = showRepository.findById(id).orElseThrow();
     return restTemplate.getForObject(
-        "http://localhost:8081/show/" + show.getTheatreShowId(), TheatreShow.class);
+        String.format("%s/%s%s", theatreUrl, "show/", show.getTheatreShowId()), TheatreShow.class);
   }
 
   public String bookShow(Long id, BookShowRequest bookShowRequest) {
@@ -43,6 +50,20 @@ public class TheatreService {
     bookShowRequest.setUserName(user.getName());
     Show show = showRepository.findById(id).orElseThrow();
     return restTemplate.postForObject(
-        "http://localhost:8081/show/" + show.getTheatreShowId(), bookShowRequest, String.class);
+        String.format("%s/%s%s", theatreUrl, "booking/", show.getTheatreShowId()), bookShowRequest, String.class);
+  }
+
+  public String addShowDetails(List<TheatreShow> addShowDetails) {
+    if(addShowDetails == null) {
+      return "No request body found";
+    }
+
+    Theatre theatre = theatreRepository.findById(addShowDetails.get(0).getTheatreId()).orElseThrow();
+    addShowDetails.forEach(showDetail -> {
+      Movie movie = movieRepository.findById(showDetail.getMovieId()).orElseThrow();
+      Show show = new Show(showDetail.getId(), "morning", theatre, movie, showDetail.getSeats());
+      showRepository.save(show);
+    });
+    return "Success!";
   }
 }
