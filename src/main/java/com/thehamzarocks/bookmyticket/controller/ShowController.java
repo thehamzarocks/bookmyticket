@@ -2,8 +2,7 @@ package com.thehamzarocks.bookmyticket.controller;
 
 import com.thehamzarocks.bookmyticket.ResponseWrapper;
 import com.thehamzarocks.bookmyticket.TheatreService;
-import com.thehamzarocks.bookmyticket.entity.BookShowRequest;
-import com.thehamzarocks.bookmyticket.entity.Show;
+import com.thehamzarocks.bookmyticket.dao.BookShowRequest;
 import com.thehamzarocks.bookmyticket.entity.TheatreShow;
 import com.thehamzarocks.bookmyticket.exception.BookMyTicketAuthenticationException;
 import com.thehamzarocks.bookmyticket.exception.BookMyTicketNoSuchEntityException;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 

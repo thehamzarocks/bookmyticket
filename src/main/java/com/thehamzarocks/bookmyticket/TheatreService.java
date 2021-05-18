@@ -1,9 +1,9 @@
 package com.thehamzarocks.bookmyticket;
 
+import com.thehamzarocks.bookmyticket.dao.BookShowRequest;
 import com.thehamzarocks.bookmyticket.dao.MovieDao;
 import com.thehamzarocks.bookmyticket.dao.ShowDao;
 import com.thehamzarocks.bookmyticket.entity.*;
-import com.thehamzarocks.bookmyticket.exception.BookMyTicketNoSuchEntityException;
 import com.thehamzarocks.bookmyticket.repository.MovieRepository;
 import com.thehamzarocks.bookmyticket.repository.ShowRepository;
 import com.thehamzarocks.bookmyticket.repository.TheatreRepository;
