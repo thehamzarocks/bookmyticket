@@ -18,7 +18,6 @@ public class Show {
 
   @OneToOne Movie movie;
 
-  // TODO: do we need to persist this?
   @Transient
   private List<Seat> seats;
 

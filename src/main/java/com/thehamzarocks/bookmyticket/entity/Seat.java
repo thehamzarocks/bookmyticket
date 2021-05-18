@@ -1,16 +1,8 @@
 package com.thehamzarocks.bookmyticket.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-@Entity
 public class Seat {
 
-  @Id @GeneratedValue Long id;
+  Long id;
 
   private String name;
 
