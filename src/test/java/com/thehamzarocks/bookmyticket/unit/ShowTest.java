@@ -39,15 +39,6 @@ public class ShowTest {
   RestTemplate restTemplate;
 
   @Mock
-  ShowRepository showRepository;
-
-  @Mock
-  TheatreRepository theatreRepository;
-
-  @Mock
-  MovieRepository movieRepository;
-
-  @Mock
   AuthService authService;
 
   @Mock
