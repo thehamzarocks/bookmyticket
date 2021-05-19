@@ -40,9 +40,6 @@ public class LoadDatabase {
       Movie theBigShortMovie = new Movie("The Big Short");
       Movie timeMovie = new Movie("Time");
       movieRepository.save(theBigShortMovie);
-      movieRepository.save(theBigShortMovie);
-      movieRepository.save(theBigShortMovie);
-      movieRepository.save(theBigShortMovie);
       movieRepository.save(timeMovie);
 
       showRepository.save(
@@ -56,39 +53,7 @@ public class LoadDatabase {
 
       showRepository.save(
           new Show(
-              1L,
-              "noon",
-              new GregorianCalendar(2021, Calendar.MAY, 25).getTime(),
-              niceMoviesTheatre,
-              timeMovie,
-              new ArrayList<>()));
-      showRepository.save(
-          new Show(
-              1L,
-              "noon",
-              new GregorianCalendar(2021, Calendar.MAY, 25).getTime(),
-              niceMoviesTheatre,
-              theBigShortMovie,
-              new ArrayList<>()));
-      showRepository.save(
-          new Show(
-              1L,
-              "noon",
-              new GregorianCalendar(2021, Calendar.MAY, 25).getTime(),
-              niceMoviesTheatre,
-              theBigShortMovie,
-              new ArrayList<>()));
-      showRepository.save(
-          new Show(
-              1L,
-              "noon",
-              new GregorianCalendar(2021, Calendar.MAY, 25).getTime(),
-              niceMoviesTheatre,
-              theBigShortMovie,
-              new ArrayList<>()));
-      showRepository.save(
-          new Show(
-              1L,
+              2L,
               "noon",
               new GregorianCalendar(2021, Calendar.MAY, 25).getTime(),
               niceMoviesTheatre,
