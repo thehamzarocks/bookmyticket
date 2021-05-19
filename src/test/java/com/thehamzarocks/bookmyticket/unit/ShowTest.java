@@ -1,18 +1,13 @@
 package com.thehamzarocks.bookmyticket.unit;
 
-import com.thehamzarocks.bookmyticket.AuthService;
-import com.thehamzarocks.bookmyticket.TheatreService;
+import com.thehamzarocks.bookmyticket.service.AuthService;
+import com.thehamzarocks.bookmyticket.service.TheatreService;
 import com.thehamzarocks.bookmyticket.dao.MovieDao;
 import com.thehamzarocks.bookmyticket.dao.ShowDao;
-import com.thehamzarocks.bookmyticket.dao.BookShowRequest;
-import com.thehamzarocks.bookmyticket.entity.Seat;
+import com.thehamzarocks.bookmyticket.dto.BookShowRequest;
 import com.thehamzarocks.bookmyticket.entity.Show;
 import com.thehamzarocks.bookmyticket.entity.User;
 import com.thehamzarocks.bookmyticket.exception.BookMyTicketAuthenticationException;
-import com.thehamzarocks.bookmyticket.exception.BookMyTicketNoSuchEntityException;
-import com.thehamzarocks.bookmyticket.repository.MovieRepository;
-import com.thehamzarocks.bookmyticket.repository.ShowRepository;
-import com.thehamzarocks.bookmyticket.repository.TheatreRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 import static org.junit.Assert.assertEquals;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertThrows;

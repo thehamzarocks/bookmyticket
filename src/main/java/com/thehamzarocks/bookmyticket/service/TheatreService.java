@@ -1,8 +1,9 @@
-package com.thehamzarocks.bookmyticket;
+package com.thehamzarocks.bookmyticket.service;
 
-import com.thehamzarocks.bookmyticket.dao.BookShowRequest;
+import com.thehamzarocks.bookmyticket.dto.BookShowRequest;
 import com.thehamzarocks.bookmyticket.dao.MovieDao;
 import com.thehamzarocks.bookmyticket.dao.ShowDao;
+import com.thehamzarocks.bookmyticket.dto.TheatreShow;
 import com.thehamzarocks.bookmyticket.entity.*;
 import com.thehamzarocks.bookmyticket.repository.MovieRepository;
 import com.thehamzarocks.bookmyticket.repository.ShowRepository;
@@ -64,17 +65,23 @@ public class TheatreService {
   }
 
   public String addShowDetails(List<TheatreShow> addShowDetails) {
-    if (addShowDetails == null) {
+    if (addShowDetails == null || addShowDetails.isEmpty()) {
       return "No request body found";
     }
+    Long theatreId = addShowDetails.get(0).getTheatreId();
     Theatre theatre =
-        theatreRepository.findById(addShowDetails.get(0).getTheatreId()).orElseThrow();
+        theatreRepository.findById(theatreId).orElseThrow();
     addShowDetails.forEach(
         showDetail -> {
           Movie movie = movieDao.findMovieById(showDetail.getMovieId());
           Show show =
               new Show(
-                  showDetail.getId(), showDetail.getTime(), showDetail.getDate(), theatre, movie, showDetail.getSeats());
+                  showDetail.getId(),
+                  showDetail.getTime(),
+                  showDetail.getDate(),
+                  theatre,
+                  movie,
+                  showDetail.getSeats());
           showRepository.save(show);
         });
     return "Success!";

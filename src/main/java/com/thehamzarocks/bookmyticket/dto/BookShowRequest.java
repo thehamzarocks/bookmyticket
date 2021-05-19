@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket.dao;
+package com.thehamzarocks.bookmyticket.dto;
 
 import java.util.List;
 

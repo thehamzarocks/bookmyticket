@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket.entity;
+package com.thehamzarocks.bookmyticket.dto;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket;
+package com.thehamzarocks.bookmyticket.configuration;
 
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;

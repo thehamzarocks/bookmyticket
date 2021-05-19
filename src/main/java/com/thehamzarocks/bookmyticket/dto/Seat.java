@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket.entity;
+package com.thehamzarocks.bookmyticket.dto;
 
 public class Seat {
 

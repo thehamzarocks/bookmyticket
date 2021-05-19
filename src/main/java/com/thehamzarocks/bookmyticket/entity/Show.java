@@ -1,12 +1,11 @@
 package com.thehamzarocks.bookmyticket.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.thehamzarocks.bookmyticket.dto.Seat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "Show")

@@ -1,4 +1,4 @@
-package com.thehamzarocks.bookmyticket;
+package com.thehamzarocks.bookmyticket.service;
 
 import com.thehamzarocks.bookmyticket.entity.User;
 import com.thehamzarocks.bookmyticket.exception.BookMyTicketAuthenticationException;

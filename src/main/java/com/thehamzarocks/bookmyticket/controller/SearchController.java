@@ -1,6 +1,6 @@
 package com.thehamzarocks.bookmyticket.controller;
 
-import com.thehamzarocks.bookmyticket.TheatreService;
+import com.thehamzarocks.bookmyticket.service.TheatreService;
 import com.thehamzarocks.bookmyticket.entity.City;
 import com.thehamzarocks.bookmyticket.entity.Movie;
 import com.thehamzarocks.bookmyticket.entity.Theatre;

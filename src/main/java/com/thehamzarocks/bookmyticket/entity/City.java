@@ -22,33 +22,15 @@ public class City {
     return this.id;
   }
 
-  public String getName() {
-    return this.name;
-  }
-
   public void setId(Long id) {
     this.id = id;
   }
 
+  public String getName() {
+    return this.name;
+  }
+
   public void setName(String name) {
     this.name = name;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof City)) return false;
-    City city = (City) o;
-    return id.equals(city.id) && name.equals(city.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name);
-  }
-
-  @Override
-  public String toString() {
-    return "City{" + "id=" + id + ", name='" + name + '\'' + '}';
   }
 }
