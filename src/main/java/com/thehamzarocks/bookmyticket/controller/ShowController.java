@@ -3,12 +3,15 @@ package com.thehamzarocks.bookmyticket.controller;
 import com.thehamzarocks.bookmyticket.ResponseWrapper;
 import com.thehamzarocks.bookmyticket.TheatreService;
 import com.thehamzarocks.bookmyticket.dao.BookShowRequest;
+import com.thehamzarocks.bookmyticket.dao.ShowDao;
+import com.thehamzarocks.bookmyticket.entity.Show;
 import com.thehamzarocks.bookmyticket.entity.TheatreShow;
 import com.thehamzarocks.bookmyticket.exception.BookMyTicketAuthenticationException;
 import com.thehamzarocks.bookmyticket.exception.BookMyTicketNoSuchEntityException;
 import com.thehamzarocks.bookmyticket.repository.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +35,16 @@ public class ShowController {
 
   @Autowired ResponseWrapper responseWrapper;
 
+  @Autowired
+  ShowDao showDao;
+
   @GetMapping("/shows")
   @ApiOperation("Get all shows")
   public ResponseEntity<?> getShows(
       @RequestParam(value = "theatre", required = false) Long theatreId,
       @RequestParam(value = "movie", required = false) Long movie) {
     if (theatreId == null || movie == null) {
-      return new ResponseEntity<>(showRepository.findAll(), HttpStatus.OK);
+      return new ResponseEntity<>(showRepository.findAll(PageRequest.of(0, 100)).getContent(), HttpStatus.OK);
     }
     return new ResponseEntity<>(showRepository.findByTheatreIdAndMovieId(theatreId, movie), HttpStatus.OK);
   }

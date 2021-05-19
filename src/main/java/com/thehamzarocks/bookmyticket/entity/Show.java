@@ -1,7 +1,10 @@
 package com.thehamzarocks.bookmyticket.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +17,8 @@ public class Show {
 
   private String time;
 
+  private Date date;
+
   @OneToOne Theatre theatre;
 
   @OneToOne Movie movie;
@@ -23,9 +28,10 @@ public class Show {
 
   public Show() {}
 
-  public Show(Long theatreShowId, String time, Theatre theatre, Movie movie, List<Seat> seats) {
+  public Show(Long theatreShowId, String time, Date date, Theatre theatre, Movie movie, List<Seat> seats) {
     this.theatreShowId = theatreShowId;
     this.time = time;
+    this.date = date;
     this.theatre = theatre;
     this.movie = movie;
     this.seats = seats != null ? seats : new ArrayList<>();
@@ -53,6 +59,14 @@ public class Show {
 
   public void setTime(String time) {
     this.time = time;
+  }
+
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
   }
 
   public Movie getMovie() {

@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Configuration
 public class LoadDatabase {
@@ -38,7 +41,7 @@ public class LoadDatabase {
       movieRepository.save(theBigShortMovie);
 
       showRepository.save(
-          new Show(1L, "noon", niceMoviesTheatre, theBigShortMovie, new ArrayList<>()));
+          new Show(1L, "noon", new GregorianCalendar(2021, Calendar.MAY, 25).getTime(), niceMoviesTheatre, theBigShortMovie, new ArrayList<>()));
     };
   }
 }

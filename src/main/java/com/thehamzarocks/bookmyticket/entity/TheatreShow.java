@@ -1,5 +1,6 @@
 package com.thehamzarocks.bookmyticket.entity;
 
+import java.util.Date;
 import java.util.List;
 
 public class TheatreShow {
@@ -7,14 +8,16 @@ public class TheatreShow {
   private Long id;
 
   private String time;
+  private Date date;
   private Long theatreId;
   private Long movieId;
   private List<Seat> seats;
 
   public TheatreShow() {}
 
-  public TheatreShow(String time, Long theatreId, Long movieId, List<Seat> seats) {
+  public TheatreShow(String time, Date date, Long theatreId, Long movieId, List<Seat> seats) {
     this.time = time;
+    this.date = date;
     this.theatreId = theatreId;
     this.movieId = movieId;
     this.seats = seats;
@@ -34,6 +37,14 @@ public class TheatreShow {
 
   public void setTime(String time) {
     this.time = time;
+  }
+
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
   }
 
   public Long getMovieId() {

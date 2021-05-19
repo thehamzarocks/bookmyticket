@@ -74,7 +74,7 @@ public class TheatreService {
           Movie movie = movieDao.findMovieById(showDetail.getMovieId());
           Show show =
               new Show(
-                  showDetail.getId(), showDetail.getTime(), theatre, movie, showDetail.getSeats());
+                  showDetail.getId(), showDetail.getTime(), showDetail.getDate(), theatre, movie, showDetail.getSeats());
           showRepository.save(show);
         });
     return "Success!";
